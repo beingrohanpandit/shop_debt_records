@@ -2,6 +2,7 @@ package repository
 
 import (
 	"errors"
+	"log"
 
 	"example.com/internal/adapters/repository/query"
 	"example.com/internal/core/domain"
@@ -10,7 +11,7 @@ import (
 
 func (m *PostgresRepository) GetUser(id string) E.IOEither[error, *domain.GetUser] {
 	data := &domain.GetUser{}
-	err := m.db.Raw(query.GetUser, id).Scan(data).Error
+	err := m.db.Raw(query.GetUser, id).Scan(&data).Error
 	if err != nil {
 		return E.Left[*domain.GetUser](errors.New("data not found"))
 	}
@@ -18,8 +19,10 @@ func (m *PostgresRepository) GetUser(id string) E.IOEither[error, *domain.GetUse
 }
 
 func (m *PostgresRepository) GetUsers() E.IOEither[error, []*domain.GetUser] {
+	log.Println("data postgres ")
 	data := []*domain.GetUser{}
-	err := m.db.Raw(query.GetUsers).Scan(data).Error
+	err := m.db.Raw(query.GetUsers).Scan(&data).Error
+	log.Println("data postgres  : ", data)
 	if err != nil {
 		return E.Left[[]*domain.GetUser](errors.New("data not found"))
 	}
