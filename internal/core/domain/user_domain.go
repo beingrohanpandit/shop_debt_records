@@ -10,7 +10,7 @@ type GetUser struct {
 
 type User struct {
 	FirstName string `json:"first_name"`
-	LastName  string `json:"lasty_name"`
+	LastName  string `json:"last_name"`
 	PhoneNo   string `json:"phone_no"`
 	Address   string `json:"address"`
 }

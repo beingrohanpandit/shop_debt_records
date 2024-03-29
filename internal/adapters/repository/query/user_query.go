@@ -27,7 +27,7 @@ FROM users u
 const AddUser = `
 INSERT INTO users 
 	(first_name,last_name,phone_no,address) 
-	VALUES('?','?','?','?')
+	VALUES(?,?,?,?)
 `
 
 const UpdateUser = `
