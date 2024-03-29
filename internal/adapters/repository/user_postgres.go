@@ -38,7 +38,7 @@ func (m *PostgresRepository) AddUser(data domain.User) E.IOEither[error, domain.
 }
 
 func (m *PostgresRepository) UpdateUser(data domain.User) E.IOEither[error, domain.User] {
-	err := m.db.Exec(query.UpdateUser, data.FirstName, data.LastName, data.PhoneNo, data.Address).Error
+	err := m.db.Exec(query.UpdateUser, data.FirstName, data.LastName, data.PhoneNo, data.Address, data.UserId).Error
 	if err != nil {
 		return E.Left[domain.User](errors.New("data not updated"))
 	}

@@ -23,7 +23,7 @@ func main() {
 	r.Route("/user", func(r chi.Router) {
 		r.Get("/{id}", UserHandler.GetUser)
 		r.Get("/", UserHandler.GetUsers)
-		r.Put("/{id}", UserHandler.UpdateUser)
+		r.Put("/", UserHandler.UpdateUser)
 		r.Post("/", UserHandler.AddUser)
 		r.Delete("/", UserHandler.DeleteUser)
 
