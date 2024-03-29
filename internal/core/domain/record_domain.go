@@ -1,9 +1,9 @@
 package domain
 
 type Record struct {
-	UserId         int              `json:"user_id"`
-	CreditAmount   float64          `json:"credit_amount"`
-	ProductDetails []ProductDetails `json:"product_details"`
+	UserId         int            `json:"user_id"`
+	CreditAmount   float64        `json:"credit_amount"`
+	ProductDetails ProductDetails `json:"product_details"`
 }
 
 type ProductDetails struct {
