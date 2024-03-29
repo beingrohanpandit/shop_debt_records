@@ -21,7 +21,12 @@ func main() {
 	UserHandler := handler.NewHTTPUserHandler(*uvc)
 
 	r.Route("/user", func(r chi.Router) {
-		r.Get("/", UserHandler.GetUser)
+		r.Get("/{id}", UserHandler.GetUser)
+		r.Get("/", UserHandler.GetUsers)
+		r.Put("/{id}", UserHandler.UpdateUser)
+		r.Post("/", UserHandler.AddUser)
+		r.Delete("/", UserHandler.DeleteUser)
+
 	})
 
 	http.ListenAndServe(":8080", r)
