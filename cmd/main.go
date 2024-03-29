@@ -25,8 +25,7 @@ func main() {
 		r.Get("/", UserHandler.GetUsers)
 		r.Put("/", UserHandler.UpdateUser)
 		r.Post("/", UserHandler.AddUser)
-		r.Delete("/", UserHandler.DeleteUser)
-
+		r.Delete("/{id}", UserHandler.DeleteUser)
 	})
 
 	http.ListenAndServe(":8080", r)
