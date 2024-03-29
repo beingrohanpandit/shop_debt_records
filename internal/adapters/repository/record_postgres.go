@@ -23,7 +23,7 @@ func (m *PostgresRepository) AddRecord(data domain.Record) E.IOEither[error, dom
 	}()
 
 	// Add Product
-	err := tx.Raw(query.AddProduct, data.ProductDetails).Scan(&data.ProductDetails.ProductId).Error
+	err := tx.Raw(query.AddProduct, data.ProductDetails.ProductName, data.ProductDetails.ProductDescription, data.ProductDetails.ProductPrice).Scan(&data.ProductDetails.ProductId).Error
 	if err != nil {
 		tx.Rollback()
 		return E.Left[domain.Record](errors.New("data not added"))
