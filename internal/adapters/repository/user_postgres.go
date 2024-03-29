@@ -17,11 +17,11 @@ func (m *PostgresRepository) GetUser(id string) E.IOEither[error, *domain.GetUse
 	return E.Right[error](data)
 }
 
-func (m *PostgresRepository) GetUsers() E.IOEither[error, *[]domain.GetUser] {
-	data := &[]domain.GetUser{}
+func (m *PostgresRepository) GetUsers() E.IOEither[error, []*domain.GetUser] {
+	data := []*domain.GetUser{}
 	err := m.db.Raw(query.GetUsers).Scan(data).Error
 	if err != nil {
-		return E.Left[*[]domain.GetUser](errors.New("data not found"))
+		return E.Left[[]*domain.GetUser](errors.New("data not found"))
 	}
 	return E.Right[error](data)
 }
@@ -42,7 +42,7 @@ func (m *PostgresRepository) UpdateUser(data domain.User) E.IOEither[error, doma
 	return E.Right[error](data)
 }
 
-func (m *PostgresRepository) Delete(id string) E.IOEither[error, bool] {
+func (m *PostgresRepository) DeleteUser(id string) E.IOEither[error, bool] {
 	err := m.db.Exec(query.DeleteUser, id).Error
 	if err != nil {
 		return E.Left[bool](errors.New("data not deleted"))
